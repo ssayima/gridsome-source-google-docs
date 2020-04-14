@@ -62,10 +62,10 @@ class GoogleDocsSource {
     })
   }
 
-  async createNodes (options, { addContentType, slugify }) {
+  async createNodes (options, { addCollection, slugify }) {
     const documents = await this.fetchDocuments(options)
 
-    const contentType = addContentType({
+    const contentType = addCollection({
       typeName: options.typeName
     })
 
