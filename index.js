@@ -72,13 +72,18 @@ class GoogleDocsSource {
     const collection = []
 
     documents.forEach(document => {
-      console.log(document)
+      const md = require('json2md')(document.content);
       collection.push({
         id: document.id,
         date: document.date,
         title: document.title,
+        md,
+        internal: {
+          mimeType: 'text/markdown',
+          content: md,
+        },
         body: document.markdown,
-        content: JSON.stringify(document.content),
+        json: JSON.stringify(document.content),
         slug: slugify(document.title)
       })
     })
